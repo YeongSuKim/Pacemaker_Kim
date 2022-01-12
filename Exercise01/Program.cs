@@ -64,23 +64,27 @@ namespace Exercise01
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
         // [문제 1]
         //  x 간격과 y값 3개가 주어졌을 때 면적을 구할 수 있는 simpson 함수를 완성하세요.
-        static double Simpson(double dx, double y0, double y1, double y2)
+        static double Simpson1(double dx, double y0, double y1, double y2)
         {
             // 계산 후 return
-            return 0.0;
+            return dx * (y0 + 4 * y1 + y2) / 3;
         }
 
-
+        //  x 간격과 y값 4개가 주어졌을 때 면적을 구할 수 있는 simpson 함수를 완성하세요.
+        static double Simpson2(double dx, double y0, double y1, double y2, double y3)
+        {
+            // 계산 후 return
+            return 3 * dx * (y0 + 3 * y1 + 3 * y2 + y3) / 8; 
+        }
 
         // [문제 2]
         //  주어진 waterline 에서의 수선면적 (waterline area) 구하는 함수를 완성하시오. (문제1의 함수 이용)
         static double Calculate_waterline_area(int w)
         {
             int[,] selectedTable = offsetTable1;        // [문제 3]
+      
                                                         //   문제 2 완성 후, offsetTable2로 바꾸어 실행해 보세요. 
                                                         //   결과가 같나요 다른가요?
                                                         //   데이터는 다른데 결과가 같다면 무엇이 문제일까요?
@@ -89,36 +93,32 @@ namespace Exercise01
             // 문제 2 ~ 3 구현부
             double area = 0.0;
 
+            if (selectedTable.GetLength(0) % 2 == 0)
+            {
+                for (int y0 = 0; y0 <= 18; y0 += 3)
+                {
+                    int y1 = y0 + 1;
+                    int y2 = y0 + 2;
+                    int y3 = y0 + 3;
 
+                    area += Simpson2(station_interval, selectedTable[y0, w], selectedTable[y1, w], selectedTable[y2, w], selectedTable[y3, w]);
+                }
+            }
 
+            else
+            {
 
+                for (int y0 = 0; y0 <= 18; y0 += 2)
+                {
+                    int y1 = y0 + 1;
+                    int y2 = y0 + 2;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    area += Simpson1(station_interval, selectedTable[y0, w], selectedTable[y1, w], selectedTable[y2, w]);
+                }
+            }
 
             return area;
         }
-
-
-
 
         static void Main(string[] args)
         {
@@ -128,9 +128,17 @@ namespace Exercise01
             {
                 Console.Write(String.Format("Waterline 번호를 입력하시오 (0 ~ {0}) : ", n - 1));
                 int w = Convert.ToInt32(Console.ReadLine());
+                if (w > n-1 || w < 0)
+                {
+                    Console.WriteLine("Waterline 범위를 벗어났습니다. 다시입력해주세요 (0 ~ {0}):",n - 1);
+                    continue;
+
+                }
+
 
                 double area = Calculate_waterline_area(w);
                 Console.WriteLine("면적: " + area.ToString() + " m2");
+                
             }
 
             // [문제 4]
