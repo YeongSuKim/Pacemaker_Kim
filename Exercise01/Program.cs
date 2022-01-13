@@ -31,7 +31,7 @@ namespace Exercise01
             {15192, 21267, 23221, 24483, 25393, 26105, 26632, 26983, 27227, 27368, 27389, 27362, 27359, 27361, 27359, 27360, 27360},
             {5880, 12220, 14539, 16152, 17372, 18277, 19013, 19626, 20082, 20421, 20667, 20831, 20916, 20934, 20899, 20832, 20772},
             {0, 1875, 3102, 4014, 4751, 5371, 5883, 6295, 6615, 6850, 7005, 7067, 7023, 6868, 6600, 6190, 5568},
-        };
+        }; 
 
         //  1-2) station 수 22개
         static int[,] offsetTable2 = new int[,] {
@@ -69,21 +69,21 @@ namespace Exercise01
         static double Simpson1(double dx, double y0, double y1, double y2)
         {
             // 계산 후 return
-            return dx * (y0 + 4 * y1 + y2) / 3;
+            return dx * (y0 + 4 * y1 + y2) / 3f;
         }
 
         //  x 간격과 y값 4개가 주어졌을 때 면적을 구할 수 있는 simpson 함수를 완성하세요.
         static double Simpson2(double dx, double y0, double y1, double y2, double y3)
         {
             // 계산 후 return
-            return 3 * dx * (y0 + 3 * y1 + 3 * y2 + y3) / 8; 
+            return 3 * dx * (y0 + 3 * y1 + 3 * y2 + y3) / 8f; 
         }
 
         // [문제 2]
         //  주어진 waterline 에서의 수선면적 (waterline area) 구하는 함수를 완성하시오. (문제1의 함수 이용)
         static double Calculate_waterline_area(int w)
         {
-            int[,] selectedTable = offsetTable1;        // [문제 3]
+            int[,] selectedTable = offsetTable2;        // [문제 3]
       
                                                         //   문제 2 완성 후, offsetTable2로 바꾸어 실행해 보세요. 
                                                         //   결과가 같나요 다른가요?
@@ -93,31 +93,37 @@ namespace Exercise01
             // 문제 2 ~ 3 구현부
             double area = 0.0;
 
-            if (selectedTable.GetLength(0) % 2 == 0)
+            int st = selectedTable.GetLength(0);
+
+            if (st % 2 == 0)
             {
-                for (int y0 = 0; y0 <= 18; y0 += 3)
+                for (int y0 = 0; y0 < st-5; y0 += 2)
                 {
                     int y1 = y0 + 1;
                     int y2 = y0 + 2;
-                    int y3 = y0 + 3;
 
-                    area += Simpson2(station_interval, selectedTable[y0, w], selectedTable[y1, w], selectedTable[y2, w], selectedTable[y3, w]);
+
+                    area += Simpson1(station_interval, selectedTable[y0, w]/1000f, selectedTable[y1, w]/1000f, selectedTable[y2, w]/1000f);
                 }
+
+                area += Simpson2(station_interval, selectedTable[st - 4, w] / 1000f, selectedTable[st - 3, w] / 1000f,
+                    selectedTable[st - 2, w] / 1000f, selectedTable[st-1, w] / 1000f);
+
             }
 
             else
             {
 
-                for (int y0 = 0; y0 <= 18; y0 += 2)
+                for (int y0 = 0; y0 < st-2; y0 += 2)
                 {
                     int y1 = y0 + 1;
                     int y2 = y0 + 2;
 
-                    area += Simpson1(station_interval, selectedTable[y0, w], selectedTable[y1, w], selectedTable[y2, w]);
+                    area += Simpson1(station_interval, selectedTable[y0, w]/1000f, selectedTable[y1, w]/1000f, selectedTable[y2, w]/1000f);
                 }
             }
 
-            return area;
+            return area * 2.0;
         }
 
         static void Main(string[] args)
