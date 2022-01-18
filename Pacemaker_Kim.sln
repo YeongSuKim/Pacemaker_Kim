@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arraytest", "Arraytest\Arra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generictest", "Generictest\Generictest.csproj", "{DF9863CC-9F17-4BCF-9AC1-137CC36148DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitOperatorTest", "BitOperatorTest\BitOperatorTest.csproj", "{D1C2C4D8-2118-4DCC-AEB5-305454120886}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitOperatorTest", "BitOperatorTest\BitOperatorTest.csproj", "{D1C2C4D8-2118-4DCC-AEB5-305454120886}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveClinic02Example", "LiveClinic02Example\LiveClinic02Example.csproj", "{B9506C5E-DE98-46D7-A8E9-2B97A716FB45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{D1C2C4D8-2118-4DCC-AEB5-305454120886}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1C2C4D8-2118-4DCC-AEB5-305454120886}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1C2C4D8-2118-4DCC-AEB5-305454120886}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9506C5E-DE98-46D7-A8E9-2B97A716FB45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9506C5E-DE98-46D7-A8E9-2B97A716FB45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9506C5E-DE98-46D7-A8E9-2B97A716FB45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9506C5E-DE98-46D7-A8E9-2B97A716FB45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
