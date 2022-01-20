@@ -41,8 +41,6 @@ namespace Exercise02
         //        최대한 이미 정의된 함수를 활용하시기 바랍니다. (중복된 코드 작성 지양)
         public double[] Calculate_waterline_areas()
         {
-            //HydrostaticCalculator에서 m나 mm로 받아서 계산한다음에
-            //높이별로 List에 저장
 
             int w;
             int n = offset_m.GetLength(1);
@@ -62,22 +60,11 @@ namespace Exercise02
             double area = 0.0;
 
             int m = this.offset_m.GetLength(0);   // number of stations
-            int i;
 
-            //for (i = 0; i < m - 2; i += 2)
-            //{
-                //area += 2 * HydrostaticCalculator_Simpson1.Simpson1(i, w, 0);
-
-            //}
             for (int s = 0; s < m - 1; s++)
             {
                 area += 2.0 * Trapezoidal(s, w, axis: 0);
             }
-
-            //if (i < m - 1)
-            //{
-                //area += 2.0 * Trapezoidal(i, w, axis: 0);
-            //}
 
             return area;
         }
@@ -145,9 +132,7 @@ namespace Exercise02
             for (i = 0; i < m - 2; i += 2)
             {
                 area += 2.0* Simpson1(i, w, 0);
-
             }
-
 
             if (i < m - 1)
             {
