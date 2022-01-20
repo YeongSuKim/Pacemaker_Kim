@@ -41,29 +41,43 @@ namespace Exercise02
         //        최대한 이미 정의된 함수를 활용하시기 바랍니다. (중복된 코드 작성 지양)
         public double[] Calculate_waterline_areas()
         {
+            //HydrostaticCalculator에서 m나 mm로 받아서 계산한다음에
+            //높이별로 List에 저장
 
+            int w;
+            int n = offset_m.GetLength(1);
+            double[] area = new double[n];
 
+            for (w = 0; w < n; w++)
+            {
+                area[w] = Calculate_waterline_area(w);
+            }
 
-
-
-
-
-
-
-            return null;
+            return area;
         }
 
         // 하나의 waterline area를 계산하는 함수 (w 위치)
-        protected double Calculate_waterline_area(int w)
+        protected virtual double Calculate_waterline_area(int w)
         {
             double area = 0.0;
 
             int m = this.offset_m.GetLength(0);   // number of stations
+            int i;
 
+            //for (i = 0; i < m - 2; i += 2)
+            //{
+                //area += 2 * HydrostaticCalculator_Simpson1.Simpson1(i, w, 0);
+
+            //}
             for (int s = 0; s < m - 1; s++)
             {
                 area += 2.0 * Trapezoidal(s, w, axis: 0);
             }
+
+            //if (i < m - 1)
+            //{
+                //area += 2.0 * Trapezoidal(i, w, axis: 0);
+            //}
 
             return area;
         }
@@ -121,30 +135,54 @@ namespace Exercise02
 
         // 문제3-1: 어떤 함수를 override 해야 할까요? 해당 함수는 부모 클래스에서 virtual을 적용하고 여기에 override 해보세요.
 
+        protected override double Calculate_waterline_area(int w)
+        {
+            double area = 0.0;
+
+            int m = this.offset_m.GetLength(0);   // number of stations
+            int i;
+
+            for (i = 0; i < m - 2; i += 2)
+            {
+                area += 2.0* Simpson1(i, w, 0);
+
+            }
 
 
+            if (i < m - 1)
+            {
+                area += 2.0 * Trapezoidal(i, w, axis: 0);
+            }
 
-
-
-
+            return area;
+        }
 
         // 문제3-2:  Simpson1 함수를 여기에 작성해 보세요.
         //           부모 클래스에 작성한 Trapezoidal 함수를 참고해서 작성해 보세요.
         protected double Simpson1(int s_pos, int w_pos, int axis = 0)
         {
+            double x, y1, y2, y3;
+            if (axis == 0)
+            {
+                x = this.ds_m;
+                y1 = this.offset_m[s_pos, w_pos];
+                y2 = this.offset_m[s_pos + 1, w_pos];
+                y3 = this.offset_m[s_pos + 2, w_pos];
+            }
+            else if (axis == 1)
+            {
+                x = this.dw_m;
+                y1 = this.offset_m[s_pos, w_pos];
+                y2 = this.offset_m[s_pos, w_pos + 1];
+                y3 = this.offset_m[s_pos, w_pos + 2];
+            }
+            else
+            {
+                throw new Exception("axis가 범위를 벗어났습니다.");
+            }
 
+            return x * (y1 + 4 * y2 + y3) / 3f;
 
-
-
-
-
-
-
-
-
-
-
-            return 0.0;
         }
 
     }
