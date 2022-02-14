@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generictest", "Generictest\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitOperatorTest", "BitOperatorTest\BitOperatorTest.csproj", "{D1C2C4D8-2118-4DCC-AEB5-305454120886}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveClinic02Example", "LiveClinic02Example\LiveClinic02Example.csproj", "{B9506C5E-DE98-46D7-A8E9-2B97A716FB45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveClinic02Example", "LiveClinic02Example\LiveClinic02Example.csproj", "{B9506C5E-DE98-46D7-A8E9-2B97A716FB45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise02", "Exercise02\Exercise02.csproj", "{793D6345-A1CA-48BC-8C64-25E1F010E24F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercise02", "Exercise02\Exercise02.csproj", "{793D6345-A1CA-48BC-8C64-25E1F010E24F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveClinic05Example", "LiveClinic05Example\LiveClinic05Example.csproj", "{D4791895-F745-468A-A06B-771527983D05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{793D6345-A1CA-48BC-8C64-25E1F010E24F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{793D6345-A1CA-48BC-8C64-25E1F010E24F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{793D6345-A1CA-48BC-8C64-25E1F010E24F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4791895-F745-468A-A06B-771527983D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4791895-F745-468A-A06B-771527983D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4791895-F745-468A-A06B-771527983D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4791895-F745-468A-A06B-771527983D05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
